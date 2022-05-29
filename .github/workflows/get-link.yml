@@ -1,0 +1,25 @@
+
+on:
+  workflow_dispatch:
+    inputs:
+      link:
+        description: "Text to speak"
+        required: true
+        default: "https://www.tiktok.com/@pierreminiggio/video/6895721634565590277"
+name: Get Link
+jobs:
+  get:
+    name: Get Link
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@main
+      - run: sudo apt update
+      - run: npm i
+      - run: npm run cli $link > link.txt
+        env:
+          link: ${{ github.event.inputs.link }}
+      - uses: actions/upload-artifact@v2
+        with:
+          name: link.txt
+          path: link.txt
