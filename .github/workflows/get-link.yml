@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@main
       - run: sudo apt update
       - run: npm i
-      - run: npm run cli $link > link.txt
+      - run: node dist/cli.js $link > link.txt
         env:
           link: ${{ github.event.inputs.link }}
       - uses: actions/upload-artifact@v2
