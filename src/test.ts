@@ -4,6 +4,6 @@ import SnapTikAPI from './SnapTikAPI';
     const api = new SnapTikAPI()
     api.puppeteerOptions.headless = false
 
-    const downloadLink = await api.getDownloadLink('https://www.tiktok.com/@pierreminiggio/video/6895721634565590277')
+    const downloadLink = await api.getDownloadLink('https://www.tiktok.com/@spacex_starshipp/video/6993024774003821830')
     console.log(downloadLink)
 })()

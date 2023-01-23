@@ -36,11 +36,11 @@ export default class SnapTikAPI {
                 videoLink
             )
 
-            const submitButtonSelector = '#submiturl'
+            const submitButtonSelector = 'button[type="submit"]'
             await page.waitForSelector(submitButtonSelector)
             await page.click(submitButtonSelector)
 
-            const highDefinitionDownloadLink = '[title="Download Server 02"]'
+            const highDefinitionDownloadLink = 'a[href^="https://cdn"]'
 
             try {
                 await page.waitForSelector(highDefinitionDownloadLink)
