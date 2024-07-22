@@ -6,5 +6,7 @@ declare type PuppeteerOptions = LaunchOptions & BrowserLaunchArgumentOptions & B
 export default class SnapTikAPI {
     puppeteerOptions: PuppeteerOptions;
     getDownloadLink(videoLink: string): Promise<string>;
+    private inputVideoLink;
+    private clickSubmitButton;
 }
 export {};
