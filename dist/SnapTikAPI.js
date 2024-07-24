@@ -25,9 +25,14 @@ class SnapTikAPI {
             const snaptTikUrl = await page.url();
             if (snaptTikUrl === 'https://snaptik.app/en1') {
                 const cookieConsentButtonSelector = '.fc-cta-consent';
-                const cookieConsentButton = await page.waitForSelector(cookieConsentButtonSelector);
-                if (cookieConsentButton) {
-                    await cookieConsentButton.click();
+                try {
+                    const cookieConsentButton = await page.waitForSelector(cookieConsentButtonSelector);
+                    if (cookieConsentButton) {
+                        await cookieConsentButton.click();
+                    }
+                }
+                catch (e) {
+                    // No cookie button
                 }
                 await this.inputVideoLink(videoLink, page);
                 await this.clickSubmitButton(page);

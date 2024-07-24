@@ -33,10 +33,14 @@ export default class SnapTikAPI {
 
                 const cookieConsentButtonSelector = '.fc-cta-consent'
 
-                const cookieConsentButton = await page.waitForSelector(cookieConsentButtonSelector)
+                try {
+                    const cookieConsentButton = await page.waitForSelector(cookieConsentButtonSelector)
 
-                if (cookieConsentButton) {
-                    await cookieConsentButton.click()
+                    if (cookieConsentButton) {
+                        await cookieConsentButton.click()
+                    }
+                } catch(e) {
+                    // No cookie button
                 }
 
                 await this.inputVideoLink(videoLink, page)
@@ -57,7 +61,7 @@ export default class SnapTikAPI {
                 }
 
                 throw new Error('No download link :\'(')
-                
+
             } else { // Initial version
                 await this.inputVideoLink(videoLink, page)
                 await this.clickSubmitButton(page)
