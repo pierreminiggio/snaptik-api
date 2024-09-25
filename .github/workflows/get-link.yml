@@ -1,9 +1,8 @@
-
 on:
   workflow_dispatch:
     inputs:
       link:
-        description: "Text to speak"
+        description: "TikTok video link"
         required: true
         default: "https://www.tiktok.com/@pierreminiggio/video/6895721634565590277"
 name: Get Link
@@ -19,7 +18,7 @@ jobs:
       - run: node dist/cli.js $link > link.txt
         env:
           link: ${{ github.event.inputs.link }}
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: link.txt
           path: link.txt
