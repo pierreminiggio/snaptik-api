@@ -1,0 +1,25 @@
+on:
+  workflow_dispatch:
+    inputs:
+      link:
+        description: "TikTok video link"
+        required: true
+        default: "https://www.tiktok.com/@pierreminiggio/video/6895721634565590277"
+name: Get Video File
+jobs:
+  get:
+    name: Get Video File
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@main
+      - run: sudo apt update
+      - run: npm i
+      - run: node dist/cli.js $link > link.txt
+        env:
+          link: ${{ github.event.inputs.link }}
+      - run: curl -o video.mp4 "$(cat link.txt)"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: video.mp4
+          path: video.mp4
